@@ -22,12 +22,15 @@ export class FirebaseUserRepository implements UserRepository {
 
   async save(user: User): Promise<User> {
     const userDoc = this.firestore.collection(this.collection).doc(user.id);
-    const userData = {
+    const userData: Record<string, unknown> = {
       id: user.id,
       username: user.username,
       email: user.email,
-      password: user.password,
     };
+
+    if (user.password !== undefined) {
+      userData.password = user.password;
+    }
 
     await userDoc.set(userData);
     return user;
@@ -70,12 +73,15 @@ export class FirebaseUserRepository implements UserRepository {
 
   async update(user: User): Promise<User> {
     const userDoc = this.firestore.collection(this.collection).doc(user.id);
-    const userData = {
+    const userData: Record<string, unknown> = {
       id: user.id,
       username: user.username,
       email: user.email,
-      password: user.password,
     };
+
+    if (user.password !== undefined) {
+      userData.password = user.password;
+    }
 
     await userDoc.update(userData);
     return user;

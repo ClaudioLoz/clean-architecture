@@ -166,18 +166,6 @@ npm run start:prod
 }
 ```
 
-### Get User by ID
-
-**GET** `/api/v1/users/:id`
-
-**Response:**
-```json
-{
-  "id": "user-id",
-  "username": "johndoe",
-  "email": "john@example.com"
-}
-```
 
 ## Event Flow
 
@@ -189,6 +177,57 @@ When a user is created:
 4. **Password Generation** → If no password provided, generates secure password
 5. **User Update** → Updates user with hashed password
 6. **Database Update** → Saves changes to Firebase
+
+## 📸 Evidence Screenshots
+
+### 1. Firebase Emulator Suite Running
+![Firebase Emulator](docs/firestore-running-evidence.png)
+*Firebase Emulator Suite successfully started with Firestore and UI components*
+
+### 2. Firestore Database - User Records
+![Firestore Data](docs/firestore-data-evidence.png)
+*User collection in Firestore showing stored user documents with all fields including auto-generated passwords*
+
+### 3. API Testing - User Creation WITH Password
+![API Testing with Password](docs/api-testing-evidence.png)
+*Successful API call creating a user with a provided password, showing complete request/response flow*
+
+### 4. Event Logs - User WITH Password Creation
+![Event Logs with Password](docs/event-logs-evidence.png)
+*NestJS application logs showing event-driven architecture when user provides their own password*
+
+### 5. API Testing - User Creation WITHOUT Password
+![API Testing without Password](docs/api-testing-wo-pass-evidence.png)
+*Successful API call creating a user without password, demonstrating auto-generation feature*
+
+### 6. Event Logs - Auto Password Generation
+![Event Logs Auto Generation](docs/event-logs-wo-pass-evidence.png)
+*Application logs showing automatic password generation and update process when no password is provided*
+
+## 🎯 What the Evidence Shows
+
+### ✅ **Clean Architecture Implementation**
+- Clear separation of concerns across all layers
+- Domain-driven event system working correctly
+- Proper dependency injection and inversion
+
+### ✅ **Core Functionality**
+- ✅ User creation with optional password field
+- ✅ Automatic secure password generation when not provided
+- ✅ Event-driven architecture triggering password updates
+- ✅ Proper data persistence in Firebase Firestore
+
+### ✅ **Technical Requirements**
+- ✅ NestJS framework with TypeScript
+- ✅ Firebase/Firestore database integration
+- ✅ Secure password handling with bcrypt
+- ✅ RESTful API endpoints working correctly
+
+### ✅ **Security Features**
+- ✅ Password hashing with bcrypt (12 salt rounds)
+- ✅ Strong password generation using crypto primitives
+- ✅ Input validation at API layer
+- ✅ Proper error handling and domain exceptions
 
 ## Testing
 
@@ -214,11 +253,6 @@ The project includes comprehensive unit tests for:
 - **Password Service**: Generation, hashing, and validation
 - **Use Cases**: Business logic testing
 
-### Run E2E Tests
-
-```bash
-npm run test:e2e
-```
 
 ## Security Features
 
