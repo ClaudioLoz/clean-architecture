@@ -1,4 +1,4 @@
-# Clean Architecture NestJS User Management System
+# Clean Architecture NestJS User System
 
 ## Description
 
