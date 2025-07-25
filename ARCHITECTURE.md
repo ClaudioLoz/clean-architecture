@@ -4,6 +4,8 @@
 
 This project implements Clean Architecture as defined by Robert C. Martin, with four distinct layers that follow the Dependency Rule: source code dependencies must point only inward, toward higher-level policies.
 
+> **📝 Architectural Note**: This is one implementation of Clean Architecture. There are various organizational approaches and folder structures (as it is explained here (https://github.com/serodriguez68/clean-architecture/blob/master/part-6-details.md#chapter-34---the-missing-chapter---actual-implementation-details-of-an-architecture)), but the **core principle is respecting the Dependency Rule** rather than specific folder organization. The dependency direction and separation of concerns is what truly defines Clean Architecture.
+
 ## Layer Structure
 
 ### 1. Domain Layer (Innermost)
@@ -282,6 +284,8 @@ describe('User API Integration', () => {
 - **Hashing**: bcrypt with configurable salt rounds
 - **Validation**: Strength requirements enforced by domain rules
 
+> **🏢 Business Rules Note**: The password generation and validation rules implemented in this technical test are assumptions for demonstration purposes. In a real-world scenario, these rules should be defined by business requirements and security policies. The implementation would adapt accordingly (different complexity requirements, length constraints, character sets, etc.).
+
 ### Input Validation
 
 - **DTO Validation**: class-validator at presentation layer
@@ -331,6 +335,9 @@ async handleUserCreated(event: UserCreatedEvent): Promise<void> {
 4. **API Versioning**: Support multiple API versions
 5. **Rate Limiting**: Prevent abuse
 6. **Caching Layer**: Improve performance
+7. **Audit Fields**: Add `createdAt`, `updatedAt`, `createdBy` for better tracking
+
+> **🔍 System Enhancement Note**: This implementation focuses on core functionality as requested in the technical test. In production systems, audit fields (`createdAt`, `updatedAt`, `createdBy`) would be essential for tracking data lineage, debugging, compliance, and business analytics. These can be easily added to the User entity and repository layer without affecting the overall architecture.
 
 ### Migration Strategy
 

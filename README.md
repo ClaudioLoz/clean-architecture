@@ -358,6 +358,19 @@ GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account-key.json
 - **Extensibility**: Easy to add new event handlers
 - **Auditability**: Clear event trail for debugging
 
+## 📝 Implementation Notes
+
+### Architecture Flexibility
+This Clean Architecture implementation prioritizes **Dependency Rule compliance** over specific folder organization. Different structural approaches exist, but the core principle—outer layers depending on inner layers—remains constant.
+
+### Business Rules
+Password generation and validation rules are implemented for demonstration purposes. In production, these would be defined by business requirements and security policies.
+
+### System Enhancements
+For production systems, consider adding:
+- **Audit fields** (`createdAt`, `updatedAt`, `createdBy`) for data tracking
+- **Logging and monitoring** for operational visibility
+
 ## Contributing
 
 1. Follow the established architecture patterns
