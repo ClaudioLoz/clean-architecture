@@ -4,6 +4,8 @@
 
 This project is a technical test implementation showcasing **Clean Architecture** principles with **NestJS**, **TypeScript**, and **Firebase**. It implements a user management system that automatically generates secure passwords when users are created without one.
 
+> 📖 **For detailed architecture documentation and implementation details, see [ARCHITECTURE.md](./ARCHITECTURE.md)**
+
 ## Architecture Overview
 
 The project follows Clean Architecture principles with clear separation of concerns:
@@ -113,13 +115,18 @@ FIRESTORE_EMULATOR_HOST=localhost:8080
 ### 3. Firebase Emulator Setup
 
 ```bash
-# Start Firebase emulators
-firebase emulators:start
+# Start Firebase emulators (RECOMMENDED - matches your default env variables)
+firebase emulators:start --only firestore --project clean-architecture-test
+
+# Alternative: Use any project name (must match your FIREBASE_PROJECT_ID in .env)
+firebase emulators:start --only firestore --project your-project-name
 
 # The emulators will run on:
 # - Firestore: http://localhost:8080
-# - Firebase UI: http://localhost:4000
+# - Firebase UI: http://localhost:4000 (access your data here)
 ```
+
+> ⚠️ **Important**: The `--project` flag is required to access the Firebase UI. Use the same project name as in your `.env` file.
 
 ## Running the Application
 
@@ -319,8 +326,8 @@ GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account-key.json
    npx kill-port 8080
    npx kill-port 4000
    
-   # Restart emulators
-   firebase emulators:start
+   # Restart emulators with correct project
+   firebase emulators:start --only firestore --project clean-architecture-test
    ```
 
 2. **Module Resolution Issues**

@@ -70,7 +70,7 @@ export class CreateUserUseCase {
     const user = User.create(id, dto.username, dto.email);
     
     // Emit domain events
-    this.eventPublisher.publish('user.created', new UserCreatedEvent(user.id, user.username, user.email, false));
+    this.eventPublisher.publish(USER_EVENTS.USER_CREATED, new UserCreatedEvent(user.id, user.username, user.email, false));
     
     return this.mapToResponse(user);
   }
@@ -195,7 +195,7 @@ export class UserCreatedEvent {
 this.eventService.emitUserCreated(user.id, user.hasPassword());
 
 // Event handling
-@OnEvent('user.created')
+@OnEvent(USER_EVENTS.USER_CREATED)
 async handleUserCreated(event: UserCreatedEvent): Promise<void> {
   if (!event.hasPassword) {
     // Generate password automatically
@@ -308,7 +308,7 @@ describe('User API Integration', () => {
 
 ```typescript
 // Structured logging in event handlers
-@OnEvent('user.created')
+@OnEvent(USER_EVENTS.USER_CREATED)
 async handleUserCreated(event: UserCreatedEvent): Promise<void> {
   console.log(`User created: ${event.userId}`);
   // In production: use structured logging with correlation IDs

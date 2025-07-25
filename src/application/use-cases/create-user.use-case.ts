@@ -8,7 +8,10 @@ import {
   UserAlreadyExistsException,
   InvalidPasswordException,
 } from '../../domain/exceptions/domain.exceptions';
-import { UserCreatedEvent } from '../../domain/events/user-created.event';
+import {
+  UserCreatedEvent,
+  USER_EVENTS,
+} from '../../domain/events/user-created.event';
 import {
   USER_REPOSITORY_TOKEN,
   PASSWORD_SERVICE_TOKEN,
@@ -72,7 +75,7 @@ export class CreateUserUseCase {
       savedUser.email,
       hasProvidedPassword,
     );
-    this.eventPublisher.publish('user.created', userCreatedEvent);
+    this.eventPublisher.publish(USER_EVENTS.USER_CREATED, userCreatedEvent);
 
     return new CreateUserResponseDto(
       savedUser.id,

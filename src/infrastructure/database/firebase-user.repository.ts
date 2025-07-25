@@ -22,7 +22,7 @@ export class FirebaseUserRepository implements UserRepository {
 
   async save(user: User): Promise<User> {
     const userDoc = this.firestore.collection(this.collection).doc(user.id);
-    const userData: Record<string, unknown> = {
+    const userData: Record<string, string> = {
       id: user.id,
       username: user.username,
       email: user.email,
@@ -73,7 +73,7 @@ export class FirebaseUserRepository implements UserRepository {
 
   async update(user: User): Promise<User> {
     const userDoc = this.firestore.collection(this.collection).doc(user.id);
-    const userData: Record<string, unknown> = {
+    const userData: Record<string, string> = {
       id: user.id,
       username: user.username,
       email: user.email,

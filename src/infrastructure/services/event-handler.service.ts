@@ -1,6 +1,9 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { UserCreatedEvent } from '../../domain/events/user-created.event';
+import {
+  UserCreatedEvent,
+  USER_EVENTS,
+} from '../../domain/events/user-created.event';
 import { UserRepository } from '../../domain/repositories/user.repository.interface';
 import { PasswordService } from '../../domain/services/password.service.interface';
 import {
@@ -17,7 +20,7 @@ export class EventHandlerService {
     private readonly passwordService: PasswordService,
   ) {}
 
-  @OnEvent('user.created')
+  @OnEvent(USER_EVENTS.USER_CREATED)
   async handleUserCreated(event: UserCreatedEvent): Promise<void> {
     console.log(`User created event received for user: ${event.userId}`);
 
